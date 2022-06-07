@@ -1,4 +1,4 @@
-'''
+"""
 NOTES:
 1. When you need to extract some information which is easily extractable
 when a sorted array is provided, sort the array first. Might not be the best
@@ -7,7 +7,8 @@ solution but always helps in reducing the complexity of the problem.
 your result.
 3. For math problems like this one, consider getting the data in an ordered
 fashion and then use that implicit ordering of the data to your advantage!
-'''
+"""
+
 
 # O(NlogN) time and O(1) space
 def nonConstructibleChange(coins):
