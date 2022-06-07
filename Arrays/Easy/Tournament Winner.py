@@ -1,3 +1,4 @@
+# O(N) time and O(N) space
 def tournamentWinner(competitions, results):
     teamScores = dict()
 
