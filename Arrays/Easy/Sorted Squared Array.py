@@ -34,3 +34,22 @@ def sortedSquaredArray(array):
 
 
 # Second Version is as follows:
+def sortedSquaredArray(array):
+    leftIdx = 0
+    rightIdx = resultsIdx = len(array) - 1
+    resultsArr = [0] * len(array)
+
+    while resultsIdx >= 0:
+        leftElem = array[leftIdx]
+        rightElem = array[rightIdx]
+
+        if abs(leftElem) > abs(rightElem):
+            resultsArr[resultsIdx] = leftElem**2
+            leftIdx += 1
+        else:
+            resultsArr[resultsIdx] = rightElem**2
+            rightIdx -= 1
+        resultsIdx -= 1
+
+    return resultsArr
+
