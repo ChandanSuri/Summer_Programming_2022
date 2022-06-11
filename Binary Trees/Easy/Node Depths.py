@@ -1,5 +1,13 @@
 def nodeDepths(root):
-    pass
+    return nodeDepthsHelper(root, 0)
+
+
+def nodeDepthsHelper(node, depth):
+    if node is None:
+        return 0
+
+    return depth + nodeDepthsHelper(node.left, depth + 1) \
+           + nodeDepthsHelper(node.right, depth + 1)
 
 
 # This is the class of the input binary tree.
