@@ -26,6 +26,7 @@ def removeDuplicatesFromLinkedList(linkedList):
     removeDuplicatesFromLinkedListHelper(linkedList)
     return head
 
+
 def removeDuplicatesFromLinkedListHelper(linkedList):
     if linkedList is None or linkedList.next is None:
         return linkedList
