@@ -1,4 +1,6 @@
 def smallestDifference(arrayOne, arrayTwo):
+    arrayOne.sort()
+    arrayTwo.sort()
     arrayOnePtr = arrayTwoPtr = 0
     minDiff = float("inf")
     result = [float("inf"), float("inf")]
