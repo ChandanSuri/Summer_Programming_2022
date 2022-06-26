@@ -1,3 +1,3 @@
-def longestPeak(array):
+def arrayOfProducts(array):
     # Write your code here.
     pass
