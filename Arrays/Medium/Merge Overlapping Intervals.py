@@ -1,3 +1,4 @@
+# O(nLogn) time and O(n) space
 def mergeOverlappingIntervals(intervals):
     intervals = sorted(intervals, key=lambda ele: ele[0])
     currInterval = intervals[0]
