@@ -1,3 +1,4 @@
+# O(N) time and O(1) space
 def firstDuplicateValue(array):
     idx = 0
     while idx < len(array):
