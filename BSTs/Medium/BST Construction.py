@@ -9,8 +9,6 @@ class BST:
         self.right = None
 
     def insert(self, value):
-        # Write your code here.
-        # Do not edit the return statement of this method.
         if value < self.value:
             if self.left is None:
                 self.left = BST(value)
@@ -25,7 +23,6 @@ class BST:
         return self
 
     def contains(self, value):
-        # Write your code here.
         if self is None:
             return False
 
@@ -36,31 +33,45 @@ class BST:
         else:
             return True
 
-    def findNodeToRemove(self, value):
+    def findNodeToRemove(self, parentNode, value):
         if self is None:
-            return None
+            return None, None
 
         if value < self.value:
-            return self.left.findNodeToRemove(value)
+            return self.left.findNodeToRemove(self, value)
         elif value > self.value:
-            return self.right.findNodeToRemove(value)
+            return self.right.findNodeToRemove(self, value)
         else:
             # Found the node
-            return self
+            return self, parentNode
+
+    def getMaxElementFromLeftSubtree(self):
+        prevNode = currNode = self.left
+
+        while currNode.right is not None:
+            prevNode = currNode
+            currNode = currNode.right
+        prevNode.right = None
+
+        return currNode
 
     def remove(self, value):
-        # Write your code here.
-        # Do not edit the return statement of this method.
-        nodeToRemove = self.findNodeToRemove(value)
+        nodeToRemove, parentNode = self.findNodeToRemove(self, value)
         if nodeToRemove is None:
             return None
 
-        if nodeToRemove.right is None and nodeToRemove.right is None:
-            # Node to be removed has no children
-            pass
-        elif nodeToRemove.right is None:
-            nodeToRemove.value = nodeToRemove.left.value
+        if nodeToRemove.left is None and nodeToRemove.right is None:
+            if parentNode.left == nodeToRemove:
+                parentNode.left = None
+            else:
+                parentNode.right = None
+        elif nodeToRemove.left is None or nodeToRemove.right is None:
+            if parentNode.left == nodeToRemove:
+                parentNode.left = nodeToRemove.left
+            else:
+                parentNode.right = nodeToRemove.right
         else:
-            pass
+            currNode = nodeToRemove.left.getMaxElementFromLeftSubtree()
+            nodeToRemove.value = currNode.value
 
-        return self
+        return nodeToRemove
