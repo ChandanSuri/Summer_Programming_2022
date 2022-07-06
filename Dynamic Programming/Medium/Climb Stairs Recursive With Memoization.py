@@ -19,7 +19,6 @@ class Solution(object):
         if curr_step in cache:
             return cache[curr_step]
 
-        cache[curr_step] = self.climbStairsHelper(curr_step + 1, n, cache) + \
-                           self.climbStairsHelper(curr_step + 2, n, cache)
+        cache[curr_step] = self.climbStairsHelper(curr_step + 1, n, cache) + self.climbStairsHelper(curr_step + 2, n, cache)
 
         return cache[curr_step]
