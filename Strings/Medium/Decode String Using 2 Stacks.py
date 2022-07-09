@@ -10,13 +10,13 @@ class Solution(object):
         curr_k = 0
 
         for char in s:
-            if ord(char) >= 48 and ord(char) <= 57:
+            if 48 <= ord(char) <= 57:
                 curr_k = curr_k * 10 + int(char)
             elif char == '[':
                 stack.append(curr_k)
                 curr_k = 0
                 stack.append(char)
-            elif ord(char) >= 97 and ord(char) <= 122:
+            elif 97 <= ord(char) <= 122:
                 stack.append(char)
             else:
                 # When char is the square closing bracket
