@@ -5,8 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
+    # This is the naive approach.
     def countNodes(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
+        if root is None:
+            return 0
+
+        return 1 + self.countNodes(root.left) + self.countNodes(root.right)
