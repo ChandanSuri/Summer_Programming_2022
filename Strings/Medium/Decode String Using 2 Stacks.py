@@ -1,38 +1,34 @@
 class Solution(object):
-    # This algorithm is O(maxK^countk*n) and maximum value of the decoded string separately.
-    # Not quite good complexity... Can be immproved!
+    # For this the time complexity is even less!
     def decodeString(self, s):
         """
         :type s: str
         :rtype: str
         """
-        stack = []
+
+        count_stack = []
+        string_stack = []
         curr_k = 0
+        curr_str = list()
 
         for char in s:
             if 48 <= ord(char) <= 57:
                 curr_k = curr_k * 10 + int(char)
-            elif char == '[':
-                stack.append(curr_k)
-                curr_k = 0
-                stack.append(char)
             elif 97 <= ord(char) <= 122:
-                stack.append(char)
+                curr_str.append(char)
+            elif char == '[':
+                count_stack.append(curr_k)
+                string_stack.append(''.join(curr_str))
+                curr_k = 0
+                curr_str = list()
             else:
-                # When char is the square closing bracket
-                curr_chars = list()
-                while stack[-1] != '[':
-                    curr_chars.append(stack.pop(len(stack) - 1))
-                curr_chars.reverse()
-                curr_chars = ''.join(curr_chars)
-                del stack[-1]
-                num_repeats = stack.pop(len(stack) - 1)
-                strs = list()
-                for idx in range(num_repeats):
-                    strs.append(curr_chars)
-                repeated_str = ''.join(strs)
-                stack.append(repeated_str)
+                # This is the case when a closing square bracket is found
+                curr_num_repeats = count_stack.pop(len(count_stack) - 1)
+                prev_str = string_stack.pop(len(string_stack) - 1)
+                repeated_str = [prev_str]
+                curr_str = ''.join(curr_str)
+                for idx in range(curr_num_repeats):
+                    repeated_str.append(curr_str)
+                curr_str = repeated_str
 
-        decoded_str = ''.join(stack)
-
-        return decoded_str
+        return ''.join(curr_str)
