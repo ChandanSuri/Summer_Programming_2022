@@ -104,4 +104,4 @@ class BST:
                 traversal_ptr.right = traversal_ptr.right.right
             traversal_ptr.right = left_subtree
 
-    return self
+        return self.value
